@@ -55,4 +55,4 @@ print(decr)
 ```
 __ __
 
-My own sample file for this project: [oCrypt0r_sample.py](https://haste.powercord.dev/coreyenevo.py)
+My own sample file for this project: [oCrypt0r_sample.py](https://haste.powercord.dev/xeluzohute.py)
