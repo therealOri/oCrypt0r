@@ -8,7 +8,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="oCrypt0r",
-    packages=["ocryptor"]
+    packages=["ocryptor"],
     version="1.0.0",
     author="therealOri",
     license="GPL-3.0",
