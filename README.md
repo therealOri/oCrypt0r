@@ -38,7 +38,7 @@ __ __
 # Code Example
 
 ```python
-from oCrypt0r import oCrypt
+from ocryptor import oCrypt
 
 #Encrypting
 string = input("Enter string: ")
