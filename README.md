@@ -43,14 +43,14 @@ from ocryptor import oCrypt
 #Encrypting
 string = input("Enter string: ")
 salt = input("Enter salt: ")
-encr = oCrypt.Encrypt(string, salt)
+encr = oCrypt().string_encrypt(string, salt)
 print(encr)
 
 
 #Decrypting
 string2 = input("Enter string: ")
 salt2 = input("Enter salt: ")
-decr = Crypt0r().Decrypt(string2, salt2) #Will return "None" if any errors happen.
+decr = oCrypt().string_decrypt(string2, salt2) #Will return "None" if any errors happen.
 print(decr)
 ```
 __ __
