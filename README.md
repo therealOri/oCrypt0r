@@ -12,9 +12,12 @@
 <br />
 
 # Updates
-What has been updated as of | 2/25/22:
+What has been updated as of | 2/27/22:
 
-> Created this repo!
+> - Added File encryption & Decryption!
+> - Fixed some typos in the readmes's code examples.
+> - Removed loading spinner animation when encrypting. (To make it faster and more practical in an automation sense.)
+> - Updated my example code all the way at the bottom of this readme.
 
 <br />
 <br />
@@ -36,23 +39,44 @@ __ __
 <br />
 
 # Code Example
-
+> Strings/Messages.
 ```python
-from ocryptor import oCrypt
+from oCrypt0r import oCrypt
 
-#Encrypting
+#Encrypting Strings
 string = input("Enter string: ")
 salt = input("Enter salt: ")
 encr = oCrypt().string_encrypt(string, salt)
 print(encr)
 
 
-#Decrypting
+#Decrypting Strings
 string2 = input("Enter string: ")
 salt2 = input("Enter salt: ")
-decr = oCrypt().string_decrypt(string2, salt2) #Will return "None" if any errors happen.
+ecr = oCrypt().string_decrypt(string2, salt2) #Will return "None" if any errors happen.
 print(decr)
+```
+
+<br />
+<br />
+
+> Files
+
+```python
+from oCrypt0r import oCrypt
+
+
+#Encrypting Files
+file_path = '/home/ori/Desktop/uwu.txt' #Must be a path to a file you want to encrypt.
+salt = input("Enter salt: ")
+oCrypt().file_encrypt(file_path, salt)
+
+
+#Decrypting Files
+file_path2 = '/home/ori/Desktop/uwu.txt.oCrypted' # .oCrypted is what is used to let you know that the file is encrypted.
+salt2 = input("Enter salt: ")
+decr = oCrypt().file_decrypt(file_path2, salt2) #Will return "False" if any errors happen.
 ```
 __ __
 
-My own sample file for this project: [oCrypt0r_sample.py](https://haste.powercord.dev/xeluzohute.py)
+My own sample file for this project: [crypt_sample.py](https://haste.powercord.dev/afakewabam.py)
