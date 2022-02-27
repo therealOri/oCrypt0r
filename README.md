@@ -38,7 +38,7 @@ __ __
 <br />
 <br />
 
-# Code Example
+# Code Examples
 > Strings/Messages.
 ```python
 from oCrypt0r import oCrypt
