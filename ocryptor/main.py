@@ -3,7 +3,6 @@ import hashlib
 import sys
 import time
 import os
-from halo import Halo
 
 #AES Fun##
 from Crypto.Random import get_random_bytes
@@ -27,35 +26,18 @@ class oCrypt:
     def clear(self):
         os.system('clear||cls')
 
-    
-    def ESpin(self):
-        self.clear()
-        spinner = Halo(text='Encrypting..', spinner='dots', placement='right')
-        spinner.start()
-        time.sleep(2.5)
-        spinner.stop()
 
-
-    def DSpin(self):
-        self.clear()
-        spinner = Halo(text='Decrypting..', spinner='dots', placement='right')
-        spinner.start()
-        time.sleep(2.5)
-        spinner.stop()
-
-
-    def Encrypt(self, string, salt):
+    def string_encrypt(self, string, salt):
         key = PBKDF2(self.hash_key, salt, dkLen=32)
         rb = get_random_bytes(AES.block_size)
         cipher = AES.new(key, AES.MODE_CBC, rb)
         cipher_data = base64.b64encode(rb + cipher.encrypt(pad(string.encode('utf-8'), AES.block_size)))
-        self.ESpin()
         self.clear()
         return cipher_data.decode()
 
 
-    def Decrypt(self, string, salt):
-        FLAG = True
+    def string_decrypt(self, string, salt):
+        FLAG1 = True
         b64d = base64.b64decode(string)
 
         try:
@@ -67,10 +49,55 @@ class oCrypt:
             print(f'Oops..An error has occured. Please try again.\nError: {e}\n\n')
             input('Press "Enter" to contine...')
             self.clear()
-            FLAG = False
-        if FLAG == True:
-            self.DSpin()
+            FLAG1 = False
+        if FLAG1 == True:
             self.clear()
             return d_cipher_data.decode()
         else:
             return None
+
+
+    def file_encrypt(self, file, salt):
+        BUF_SIZE = 65536
+        
+        key = PBKDF2(self.hash_key, salt, dkLen=32)
+        rb = get_random_bytes(AES.block_size)
+        cipher = AES.new(key, AES.MODE_CBC, rb)
+
+        with open(file, 'r+b') as f:
+            while True:
+                data = f.read(BUF_SIZE)
+                if not data:
+                    break
+                cipher_data = base64.b64encode(rb + cipher.encrypt(pad(data, AES.block_size)))
+        with open(file, 'wb') as f2:
+            f2.write(cipher_data)
+            os.rename(file, f'{file}.oCrypted')
+        return
+
+    
+    def file_decrypt(self, file, salt):
+        FLAG2 = True
+        with open(file, 'rb') as f:
+            string = f.read()
+            b64d = base64.b64decode(string)
+
+            try:
+                key = PBKDF2(self.hash_key, salt, dkLen=32)
+                cipher = AES.new(key, AES.MODE_CBC, b64d[:AES.block_size])
+                d_cipher_data = unpad(cipher.decrypt(b64d[AES.block_size:]), AES.block_size)
+            except Exception as e:
+                self.clear()
+                print(f'Oops..An error has occured. Please try again.\nError: {e}\n\n')
+                input('Press "Enter" to contine...')
+                self.clear()
+                FLAG2 = False
+
+        with open(file, 'wb') as f2:
+            f2.write(d_cipher_data)
+            os.rename(file, file.replace('.oCrypted', ''))
+        
+        if FLAG2 == True:
+            return True
+        elif FLAG2 == False:
+            return False
