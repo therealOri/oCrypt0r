@@ -45,7 +45,7 @@ __ __
 # Code Examples
 > If you would like to make this look better/more presentable. Please by all means make a pull request xD. I'm not the best with making things look great.
 ```python
-from oCrypt0r import oCrypt
+from ocryptor import oCrypt
 
 
 ##---------Strings---------##
