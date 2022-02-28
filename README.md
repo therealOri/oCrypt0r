@@ -18,20 +18,23 @@ What has been updated as of | 2/27/22:
 > - Fixed some typos in the readmes's code examples.
 > - Removed loading spinner animation when encrypting. (To make it faster and more practical in an automation sense.)
 > - Updated my example code all the way at the bottom of this readme.
+> - A new way to encrypt a specified directory. It will encrypt all of the files in that directory and sub-directories. So if there are folders in folders..it'll do them too.
+> - README.md file code examples and how they are presented.
 
 <br />
 <br />
 
 # Installation
-
+ > [Directly from here/this repo.]
 ```bash
-[Directly from here/this repo.]
-- pip install git+https://github.com/therealOri/oCrypt0r
+[therealOri ~]$ pip install git+https://github.com/therealOri/oCrypt0r
+```
 
 or
 
-[From Pypi.]
-- pip install oCrypt0r
+> [From Pypi.]
+```bash
+[therealOri ~]$ pip install oCrypt0r
 ```
 __ __
 
@@ -39,44 +42,69 @@ __ __
 <br />
 
 # Code Examples
-> Strings/Messages.
+> If you would like to make this look better/more presentable. Please by all means make a pull request xD. I'm not the best with making things look great.
 ```python
 from oCrypt0r import oCrypt
+
+
+##---------Strings---------##
 
 #Encrypting Strings
 string = input("Enter string: ")
 salt = input("Enter salt: ")
-encr = oCrypt().string_encrypt(string, salt)
-print(encr)
+str_enc = oCrypt().string_encrypt(string, salt)
+print(string_enc)
 
 
 #Decrypting Strings
 string2 = input("Enter string: ")
 salt2 = input("Enter salt: ")
-ecr = oCrypt().string_decrypt(string2, salt2) #Will return "None" if any errors happen.
-print(decr)
-```
+str_dcr = oCrypt().string_decrypt(string2, salt2) # Will return "False" if errors happen. "True" if successful.
+print(str_dcr)
 
-<br />
-<br />
+##---------Strings End---------##
 
-> Files
 
-```python
-from oCrypt0r import oCrypt
 
+
+
+##---------Files---------##
 
 #Encrypting Files
 file_path = '/home/ori/Desktop/uwu.txt' #Must be a path to a file you want to encrypt.
-salt = input("Enter salt: ")
-oCrypt().file_encrypt(file_path, salt)
+file_salt = input("Enter salt: ")
+oCrypt().file_encrypt(file_path, file_salt) # Will return "False" if errors happen. "True" if successful.
 
 
 #Decrypting Files
 file_path2 = '/home/ori/Desktop/uwu.txt.oCrypted' # .oCrypted is what is used to let you know that the file is encrypted.
-salt2 = input("Enter salt: ")
-decr = oCrypt().file_decrypt(file_path2, salt2) #Will return "False" if any errors happen.
+file_salt2 = input("Enter salt: ")
+oCrypt().file_decrypt(file_path2, file_salt2)
+
+##---------Files End---------##
+
+
+
+
+
+##---------Directories---------##
+
+#Encrypting Directory
+dir_path1 = '/home/ori/Desktop/testing' #Must be a path to the directory you want to encrypt.
+dir_salt1 = input("Enter salt: ")
+oCrypt().dir_encrypt(dir_path1, dir_salt1) # Will return "False" if errors happen. "True" if successful.
+
+
+#Decrypting Directory
+dir_path2 = '/home/ori/Desktop/testing' # .oCrypted is what is used to let you know that the file is encrypted.
+dir_salt2 = input("Enter salt: ")
+oCrypt().dir_decrypt(dir_path2, sdir_salt2)
+
+##---------Directories End---------##
 ```
+
+<br />
+
 __ __
 
-My own sample file for this project: [crypt_sample.py](https://haste.powercord.dev/afakewabam.py)
+My own sample file for this project: [crypt_sample.py](https://haste.powercord.dev/atehenepos.py)
