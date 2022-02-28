@@ -3,7 +3,7 @@
     oCrypt0r - A minimalistic, simple AES encryption library written in python3.
 </h1>
 <p align="center">
-    oCrypt0r allows you to encrypt and decrypt strings of text via AES. Your encrypted data/strings can only be decrypted using your own custom key and salt you set before encrypting said data. You can use this for a variety of things from securing passwords to securing communication. Making AES encryption a little bit easier!
+    oCrypt0r allows you to encrypt and decrypt strings of text via AES. Your encrypted data/strings can only be decrypted using your own custom key and salt you set before encrypting said data. You can use this for a variety of things from securing passwords to securing communication to encrypting HWIDs and directories/folders. Making AES encryption a little bit easier!
 </p>
 
 <h1></h1>
