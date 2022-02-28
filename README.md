@@ -12,15 +12,11 @@
 <br />
 
 # Updates
-What has been updated as of | 2/27/22:
+What has been updated as of | 2/28/22:
 
-> - Added File encryption & Decryption!
-> - Fixed some typos in the readmes's code examples.
-> - Removed loading spinner animation when encrypting. (To make it faster and more practical in an automation sense.)
-> - Updated my example code all the way at the bottom of this readme.
-> - A new way to encrypt a specified directory. It will encrypt all of the files in that directory and sub-directories. So if there are folders in folders..it'll do them too.
-> - How error handling is done, functions will now return "False" if any errors happen and "True" if successful. Instead of "None"
-> - Updated README.md file code examples and how they are presented.
+> - New way of hashing and salting said hash.
+> - Documentation file added to this repo.
+> - Updated code file and examples.
 
 <br />
 <br />
