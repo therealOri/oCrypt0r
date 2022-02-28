@@ -54,7 +54,7 @@ class oCrypt:
             self.clear()
             return d_cipher_data.decode()
         else:
-            return None
+            return False
 
 
     def file_encrypt(self, key, key_salt, file, file_salt):
