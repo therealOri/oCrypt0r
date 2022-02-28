@@ -121,4 +121,4 @@ oCrypt().dir_decrypt(key2, sdir_salt2, dir_path2, sdir_salt2)
 
 __ __
 
-My own sample file for this project: [crypt_sample.py](https://haste.powercord.dev/atehenepos.py) 
+My own sample file for this project: [crypt_sample.py](https://haste.powercord.dev/imemimejar.py) 
