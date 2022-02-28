@@ -44,6 +44,11 @@ __ __
 
 # Code Examples
 > If you would like to make this look better/more presentable. Please by all means make a pull request xD. I'm not the best with making things look great.
+
+It is important to know that all functions will take 4 values. 2 for the making of the hashed value and 2 for the making of the encryption key.
+Blake2b salted hashing requires 1 value to be hashed and 1 value to be used to salt the hash. This then gets plugged into the AES encryption as a key and then we salt that aswell. All of that will be used to encrypt whatever you want as a value. "strings", "files", or "directories/folders".
+
+- [Documentation](https://github.com/therealOri/oCrypt0r/blob/main/DOCUMENTATION.md)
 ```python
 from ocryptor import oCrypt
 
@@ -51,16 +56,20 @@ from ocryptor import oCrypt
 ##---------Strings---------##
 
 #Encrypting Strings
+key = input("Enter word for hashing: ")
+key_salt = input("Enter salt for hashing: ")
 string = input("Enter string: ")
-salt = input("Enter salt: ")
-str_enc = oCrypt().string_encrypt(string, salt)
+string_salt = input("Enter salt for encryption: ")
+str_enc = oCrypt().string_encrypt(key, key_salt, string, string_salt)
 print(string_enc)
 
 
 #Decrypting Strings
-string2 = input("Enter string: ")
-salt2 = input("Enter salt: ")
-str_dcr = oCrypt().string_decrypt(string2, salt2) # Will return "False" if errors happen. "True" if successful.
+key2 = input("Enter the word you used for hashing: ")
+key_salt2 = input("Enter the salt you used for hashing: ")
+string2 = input("Enter your string to decrypt: ")
+salt2 = input("Enter the salt you used for encryption: ")
+str_dcr = oCrypt().string_decrypt(key2, key_salt2, string2, string_salt2) # Will return "False" if errors happen. "True" if successful.
 print(str_dcr)
 
 ##---------Strings End---------##
@@ -72,15 +81,19 @@ print(str_dcr)
 ##---------Files---------##
 
 #Encrypting Files
+key = input("Enter word for hashing: ")
+key_salt = input("Enter salt for hashing: ")
 file_path = '/home/ori/Desktop/uwu.txt' #Must be a path to a file you want to encrypt.
-file_salt = input("Enter salt: ")
-oCrypt().file_encrypt(file_path, file_salt) # Will return "False" if errors happen. "True" if successful.
+file_salt = input("Enter salt for encryption: ")
+oCrypt().file_encrypt(key, key_salt, file_path, file_salt) # Will return "False" if errors happen. "True" if successful.
 
 
 #Decrypting Files
+key2 = input("Enter the word you used for hashing: ")
+key_salt2 = input("Enter the salt you used for hashing: ")
 file_path2 = '/home/ori/Desktop/uwu.txt.oCrypted' # .oCrypted is what is used to let you know that the file is encrypted.
-file_salt2 = input("Enter salt: ")
-oCrypt().file_decrypt(file_path2, file_salt2)
+file_salt2 = input("Enter the salt you used for encryption: ")
+oCrypt().file_decrypt(key, key_salt, file_path2, file_salt2)
 
 ##---------Files End---------##
 
@@ -91,15 +104,19 @@ oCrypt().file_decrypt(file_path2, file_salt2)
 ##---------Directories---------##
 
 #Encrypting Directory
-dir_path1 = '/home/ori/Desktop/testing' #Must be a path to the directory you want to encrypt.
-dir_salt1 = input("Enter salt: ")
-oCrypt().dir_encrypt(dir_path1, dir_salt1) # Will return "False" if errors happen. "True" if successful.
+key = input("Enter word for hashing: ")
+key_salt = input("Enter salt for hashing: ")
+dir_path = '/home/ori/Desktop/testing' #Must be a path to the directory you want to encrypt.
+dir_salt = input("Enter salt for encryption: ")
+oCrypt().dir_encrypt(key, key_salt, dir_path, dir_salt) # Will return "False" if errors happen. "True" if successful.
 
 
 #Decrypting Directory
+key2 = input("Enter the word you used for hashing: ")
+key_salt2 = input("Enter the salt you used for hashing: ")
 dir_path2 = '/home/ori/Desktop/testing' # .oCrypted is what is used to let you know that the file is encrypted.
-dir_salt2 = input("Enter salt: ")
-oCrypt().dir_decrypt(dir_path2, sdir_salt2)
+dir_salt2 = input("Enter the salt you used for encryption: ")
+oCrypt().dir_decrypt(key2, sdir_salt2, dir_path2, sdir_salt2)
 
 ##---------Directories End---------##
 ```
@@ -108,4 +125,4 @@ oCrypt().dir_decrypt(dir_path2, sdir_salt2)
 
 __ __
 
-My own sample file for this project: [crypt_sample.py](https://haste.powercord.dev/atehenepos.py)
+My own sample file for this project: [crypt_sample.py](https://haste.powercord.dev/atehenepos.py) 
