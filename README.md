@@ -17,6 +17,7 @@ What has been updated as of | 2/28/22:
 > - New way of hashing and salting said hash.
 > - Documentation file added to this repo.
 > - Updated code file and examples.
+> - Patched dir_encrypt() & dir_decrypt(). They were stopping BEFORE getting to the subdirectories. "retun True" was not in the right spot and indented one to far.
 
 <br />
 <br />
