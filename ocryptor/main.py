@@ -122,7 +122,7 @@ class oCrypt:
                         self.file_encrypt(key, key_salt, f'{path}/{name}', dir_salt)
                     except Exception as e:
                         return False
-                return True
+            return True
         else:
             return False
 
@@ -137,7 +137,7 @@ class oCrypt:
                         self.file_decrypt(key, key_salt, f'{path}/{name}', dir_salt)
                     except Exception as e:
                         return False
-                return True
+            return True
         else:
             return False
 
