@@ -79,7 +79,7 @@ __ __
 > - [A4] To allow you to encrypt and decrypt anything you want pretty fast and easily. To use it in your code when you need to encrypt something or decrypt something. To encrypt everything in a specified folder to make sure people can't just snoop around easily. To bring you AES encryption without the hastle of setting everything up yourself. All you'll need to do is provide the information it asks for and it'll do all the work for you.
 __ __
 
-- You can read more about what "Hashing: is here: https://www.sentinelone.com/cybersecurity-101/hashing/ 
-- You can read more about Blake2b here: https://www.blake2.net.
-- And you can read more about Salting here: https://www.omnicybersecurity.com/what-does-salting-the-hash-mean-is-it-effective/
+- You can read more about what "Hashing" is here: https://www.sentinelone.com/cybersecurity-101/hashing/ 
+- You can read more about "Blake2b" here: https://www.blake2.net.
+- And you can read more about "Salting" here: https://www.omnicybersecurity.com/what-does-salting-the-hash-mean-is-it-effective/
 __ __
