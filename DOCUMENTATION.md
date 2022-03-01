@@ -8,15 +8,24 @@ __ __
 # String Encryption
 > oCrypt() is the class name.
 ```python
-string_encrypt(key, key_salt, string, string_salt)
+string_encrypt(key, key_salt, string, enc_salt)
 ```
 `string_encrypt()` is the function used to encrypt a string. It accepts strings as arguments.
 > It takes 4 arguments, 2 for the blake2b hash&salt, and 2 for the encryption key and what you want to encrypt. "string" Is what you want to have encrypted.
 
 ```python
-string_decrypt(key, key_salt, string, str_salt)
+string_decrypt(key, key_salt, string, enc_salt)
 ```
 `string_decrypt()` is the function used to decrypt a string. It takes the same arguments as above and uses them to decrypt "string".
+__ __
+
+**Arguments:**
+- `key` = Word you want hashed.
+- `key_salt` = A salt for that hash.
+- `string` = What you want to be encrypted.
+- `enc_salt` = A salt that will be used for the encryption.
+
+
 __ __
 
 <br />
@@ -25,16 +34,20 @@ __ __
 # File Encryption
 > oCrypt() is the class name.
 ```python
-file_encrypt(key, key_salt, file_path, file_salt)
+file_encrypt(key, key_salt, file_path, enc_salt)
 ```
 `file_encrypt()` is the function used to encrypt files. 
 > It takes 4 arguments, 2 for the blake2b hash&salt, and 2 for the encryption key and what you want to encrypt. "file_path" Is what you want to have encrypted.
 > "file_path" MUST be the absolute path of the file. Example: "/home/therealOri/Desktop/Project/example.txt"
 
 ```python
-file_decrypt(key, key_salt, file_path, file_salt)
+file_decrypt(key, key_salt, file_path, enc_salt)
 ```
 `file_decrypt()` is the function used to decrypt a file. It takes the same arguments as above and uses them to decrypt "file_path". AKA your file.
+__ __
+
+**Arguments:**
+- `file_path` = The path to the file you want encrypted. Example: `/home/therealOri/Projects/example.txt`
 __ __
 
 <br />
@@ -43,7 +56,7 @@ __ __
 # Directory Encryption | Folder Encryption
 > oCrypt() is the class name.
 ```python
-dir_encrypt(key, key_salt, dir_path, dir_salt)
+dir_encrypt(key, key_salt, dir_path, enc_salt)
 ```
 `dir_encrypt()` is the function used to encrypt directories/folders. 
 > It takes 4 arguments, 2 for the blake2b hash&salt, and 2 for the encryption key and what you want to encrypt. "dir_path" Is what you want to have encrypted.
@@ -54,6 +67,11 @@ dir_encrypt(key, key_salt, dir_path, dir_salt)
 dir_decrypt(key, key_salt, dir_path, dir_salt)
 ```
 `dir_decrypt()` is the function used to decrypt a directory. It takes the same arguments as above and uses them to decrypt "dir_path". AKA your directory/folder.
+__ __
+
+**Arguments:**
+- `dir_path` = The path to the folder/directory you want encrypted. Example: `/home/therealOri/Projects/Example`
+
 __ __
 
 <br />
