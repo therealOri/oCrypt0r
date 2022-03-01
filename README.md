@@ -45,6 +45,8 @@ __ __
 It is important to know that all functions will take 4 values. 2 for the making of the hashed value and 2 for the making of the encryption key.
 Blake2b salted hashing requires 1 value to be hashed and 1 value to be used to salt the hash. This then gets plugged into the AES encryption as a key and then we salt that aswell. All of that will be used to encrypt whatever you want as a value. "strings", "files", or "directories/folders".
 
+You can read more about what the arguments do in the linked documentation.
+
 - [Documentation](https://github.com/therealOri/oCrypt0r/blob/main/DOCUMENTATION.md)
 ```python
 from ocryptor import oCrypt
@@ -53,23 +55,28 @@ from ocryptor import oCrypt
 ##---------Strings---------##
 
 #Encrypting Strings
-key = input("Enter word for hashing: ")
-key_salt = input("Enter salt for hashing: ")
-string = input("Enter string: ")
-string_salt = input("Enter salt for encryption: ")
-str_enc = oCrypt().string_encrypt(key, key_salt, string, string_salt)
-print(string_enc)
+key = 'therealOri'
+key_salt = 'abcdefghijklmnop' #MUST be 16 characters or less.
+string = 'Hello Wolrd <3'
+enc_salt = 'qrstuvwxyz1234567890'
+
+str_enc = oCrypt().string_encrypt(key, key_salt, string, enc_salt)
+print(str_enc) # Output is b64 encoded.
+
 
 
 #Decrypting Strings
-key2 = input("Enter the word you used for hashing: ")
-key_salt2 = input("Enter the salt you used for hashing: ")
-string2 = input("Enter your string to decrypt: ")
-salt2 = input("Enter the salt you used for encryption: ")
-str_dcr = oCrypt().string_decrypt(key2, key_salt2, string2, string_salt2) # Will return "False" if errors happen. "True" if successful.
-print(str_dcr)
+key = 'therealOri'
+key_salt = 'abcdefghijklmnop'
+string = 'Hello Wolrd <3'
+enc_salt = 'qrstuvwxyz123456'
+
+str_dcr = oCrypt().string_decrypt(key, key_salt, string, enc_salt) # Will return "False" if errors happen. "True" if successful.
+print(str_dcr) # Output is "Hello Wolrd <3"
 
 ##---------Strings End---------##
+
+
 
 
 
@@ -78,21 +85,26 @@ print(str_dcr)
 ##---------Files---------##
 
 #Encrypting Files
-key = input("Enter word for hashing: ")
-key_salt = input("Enter salt for hashing: ")
-file_path = '/home/ori/Desktop/uwu.txt' #Must be a path to a file you want to encrypt.
-file_salt = input("Enter salt for encryption: ")
-oCrypt().file_encrypt(key, key_salt, file_path, file_salt) # Will return "False" if errors happen. "True" if successful.
+key = 'therealOri'
+key_salt = 'abcdefghijklmnop'
+file_path = '/home/therealOri/Projects/example.txt'
+enc_salt = 'qrstuvwxyz123456'
+
+oCrypt().file_encrypt(key, key_salt, file_path, enc_salt) #Will return "False" if errors happen. "True" if successful.
+
 
 
 #Decrypting Files
-key2 = input("Enter the word you used for hashing: ")
-key_salt2 = input("Enter the salt you used for hashing: ")
-file_path2 = '/home/ori/Desktop/uwu.txt.oCrypted' # .oCrypted is what is used to let you know that the file is encrypted.
-file_salt2 = input("Enter the salt you used for encryption: ")
-oCrypt().file_decrypt(key, key_salt, file_path2, file_salt2)
+key = 'therealOri'
+key_salt = 'abcdefghijklmnop'
+file_path = '/home/therealOri/Projects/example.txt.oCrypted' # .oCrypted is what is used to let you know that the file is encrypted.
+enc_salt = 'qrstuvwxyz123456'
+
+oCrypt().file_decrypt(key, key_salt, file_path, enc_salt)
 
 ##---------Files End---------##
+
+
 
 
 
@@ -101,18 +113,21 @@ oCrypt().file_decrypt(key, key_salt, file_path2, file_salt2)
 ##---------Directories---------##
 
 #Encrypting Directory
-key = input("Enter word for hashing: ")
-key_salt = input("Enter salt for hashing: ")
-dir_path = '/home/ori/Desktop/testing' #Must be a path to the directory you want to encrypt.
-dir_salt = input("Enter salt for encryption: ")
-oCrypt().dir_encrypt(key, key_salt, dir_path, dir_salt) # Will return "False" if errors happen. "True" if successful.
+key = 'therealOri'
+key_salt = 'abcdefghijklmnop'
+dir_path = '/home/therealOri/Projects #Must be a path to the directory you want to encrypt.
+enc_salt = 'qrstuvwxyz123456'
+
+oCrypt().dir_encrypt(key, key_salt, dir_path, enc_salt) # Will return "False" if errors happen. "True" if successful.
+
 
 
 #Decrypting Directory
-key2 = input("Enter the word you used for hashing: ")
-key_salt2 = input("Enter the salt you used for hashing: ")
-dir_path2 = '/home/ori/Desktop/testing' # .oCrypted is what is used to let you know that the file is encrypted.
-dir_salt2 = input("Enter the salt you used for encryption: ")
+key = 'therealOri'
+key_salt = 'abcdefghijklmnop'
+dir_path = '/home/therealOri/Projects
+enc_salt = 'qrstuvwxyz123456'
+
 oCrypt().dir_decrypt(key2, sdir_salt2, dir_path2, sdir_salt2)
 
 ##---------Directories End---------##
