@@ -13,6 +13,9 @@ string_encrypt(key, key_salt, string, enc_salt)
 `string_encrypt()` is the function used to encrypt a string. It accepts strings as arguments.
 > It takes 4 arguments, 2 for the blake2b hash&salt, and 2 for the encryption key and what you want to encrypt. "string" Is what you want to have encrypted.
 
+<br />
+<br />
+
 ```python
 string_decrypt(key, key_salt, string, enc_salt)
 ```
@@ -37,13 +40,17 @@ __ __
 file_encrypt(key, key_salt, file_path, enc_salt)
 ```
 `file_encrypt()` is the function used to encrypt files. 
-> It takes 4 arguments, 2 for the blake2b hash&salt, and 2 for the encryption key and what you want to encrypt. "file_path" Is what you want to have encrypted.
-> "file_path" MUST be the absolute path of the file. Example: "/home/therealOri/Desktop/Project/example.txt"
+> - It takes 4 arguments, 2 for the blake2b hash&salt, and 2 for the encryption key and what you want to encrypt. "file_path" Is what you want to have encrypted.
+> - "file_path" MUST be the absolute path of the file. Example: "/home/therealOri/Desktop/Project/example.txt"
+> - If a file that it is trying to encrypt has no data to encrypt, it won't do anthing with the file and ignore it.
+
+<br />
+<br />
 
 ```python
 file_decrypt(key, key_salt, file_path, enc_salt)
 ```
-`file_decrypt()` is the function used to decrypt a file. It takes the same arguments as above and uses them to decrypt "file_path". AKA your file.
+`file_decrypt()` is the function used to decrypt a file. It takes the same arguments as above and uses them to decrypt "file_path". AKA your file. 
 __ __
 
 **Arguments:**
@@ -62,6 +69,9 @@ dir_encrypt(key, key_salt, dir_path, enc_salt)
 > It takes 4 arguments, 2 for the blake2b hash&salt, and 2 for the encryption key and what you want to encrypt. "dir_path" Is what you want to have encrypted.
 > "dir_path" MUST be the absolute path to the directory/folder. Example: "/home/therealOri/Desktop/Projects"
 > If there are sub directories (folders in folders), it will encrypt the files in there aswell.
+
+<br />
+<br />
 
 ```python
 dir_decrypt(key, key_salt, dir_path, dir_salt)
