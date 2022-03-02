@@ -51,6 +51,7 @@ file_encrypt(key, key_salt, file_path, enc_salt)
 file_decrypt(key, key_salt, file_path, enc_salt)
 ```
 `file_decrypt()` is the function used to decrypt a file. It takes the same arguments as above and uses them to decrypt "file_path". AKA your file. 
+> - This function will ignore all files without the ".oCrypted" extension. The file MUST end with that extenstion or else it won't decrypt the file(s).
 __ __
 
 **Arguments:**
