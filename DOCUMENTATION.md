@@ -42,7 +42,7 @@ file_encrypt(key, key_salt, file_path, enc_salt)
 `file_encrypt()` is the function used to encrypt files. 
 > - It takes 4 arguments, 2 for the blake2b hash&salt, and 2 for the encryption key and what you want to encrypt. "file_path" Is what you want to have encrypted.
 > - "file_path" MUST be the absolute path of the file. Example: "/home/therealOri/Desktop/Project/example.txt"
-> - If a file that it is trying to encrypt has no data to encrypt, it won't do anthing with the file and ignore it.
+> - If a file that it is trying to encrypt has no data to encrypt, it will raise/throw an error.
 
 <br />
 <br />
@@ -52,6 +52,7 @@ file_decrypt(key, key_salt, file_path, enc_salt)
 ```
 `file_decrypt()` is the function used to decrypt a file. It takes the same arguments as above and uses them to decrypt "file_path". AKA your file. 
 > - This function will ignore all files without the ".oCrypted" extension. The file MUST end with that extenstion or else it won't decrypt the file(s).
+> - If the file has no data to decrypt, it will throw/raise an error. and say `"File is empty..nothing to decrypt"`.
 __ __
 
 **Arguments:**
@@ -67,9 +68,10 @@ __ __
 dir_encrypt(key, key_salt, dir_path, enc_salt)
 ```
 `dir_encrypt()` is the function used to encrypt directories/folders. 
-> It takes 4 arguments, 2 for the blake2b hash&salt, and 2 for the encryption key and what you want to encrypt. "dir_path" Is what you want to have encrypted.
-> "dir_path" MUST be the absolute path to the directory/folder. Example: "/home/therealOri/Desktop/Projects"
-> If there are sub directories (folders in folders), it will encrypt the files in there aswell.
+> - It takes 4 arguments, 2 for the blake2b hash&salt, and 2 for the encryption key and what you want to encrypt. "dir_path" Is what you want to have encrypted.
+> - "dir_path" MUST be the absolute path to the directory/folder. Example: "/home/therealOri/Desktop/Projects"
+> - If there are sub directories (folders in folders), it will encrypt the files in there aswell.
+> - If there are files with no data/empty in the specified directory/subdirectories, it will ignore them and move on to file that DO have data to encrypt.
 
 <br />
 <br />
@@ -78,6 +80,7 @@ dir_encrypt(key, key_salt, dir_path, enc_salt)
 dir_decrypt(key, key_salt, dir_path, dir_salt)
 ```
 `dir_decrypt()` is the function used to decrypt a directory. It takes the same arguments as above and uses them to decrypt "dir_path". AKA your directory/folder.
+> - If a file doesn't have the file extension `.oCrypted` OR if the file has no data to decrypt/is empty, it will ignore the file and move on to the files that DO have data to decrypt.
 __ __
 
 **Arguments:**
