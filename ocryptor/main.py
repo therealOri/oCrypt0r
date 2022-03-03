@@ -106,14 +106,14 @@ class oCrypt:
                             d_cipher_data = unpad(cipher.decrypt(b64d[AES.block_size:]), AES.block_size)
                         except Exception as e:
                             fled_e3 = f'The provided "enc_salt" or the "key_salt" does not match what was was used to encrypt the data...\nError: {e}'
-                            raise Exception(fldd_e3) from None
+                            raise Exception(fled_e3) from None
                     try:
                         with open(file, 'wb') as f2:
                             f2.write(d_cipher_data)
                             os.rename(file, file.replace('.oCrypted', ''))
                     except Exception:
                         fled_e4 = "Could not open, write into, or replace/rename the file.."
-                        raise Exception(fldd_e4) from None
+                        raise Exception(fled_e4) from None
             else:
                 pass
         else:
