@@ -12,12 +12,11 @@
 <br />
 
 # Updates
-What has been updated as of | 2/28/22:
+What has been updated as of | 3/02/22:
 
-> - New way of hashing and salting said hash.
-> - Documentation file added to this repo.
-> - Updated code file and examples.
-> - Patched dir_encrypt() & dir_decrypt(). They were stopping BEFORE getting to the subdirectories. "retun True" was not in the right spot and indented one to far.
+> - dir_encrypt() & dir_decrypt() will now ignore files with no data.
+> - dir_decrypt() will ignore files without the extension `.oCrypted`.
+> - file_encrypt() & file_decrypt() will both now throw/raise proper errors if the file they are encrypting/decrypting has/contains no data.
 
 <br />
 <br />
@@ -71,7 +70,7 @@ key_salt = 'abcdefghijklmnop'
 string = 'Hello Wolrd <3'
 enc_salt = 'qrstuvwxyz123456'
 
-str_dcr = oCrypt().string_decrypt(key, key_salt, string, enc_salt) # Will return "False" if errors happen. "True" if successful.
+str_dcr = oCrypt().string_decrypt(key, key_salt, string, enc_salt)
 print(str_dcr) # Output is "Hello Wolrd <3"
 
 ##---------Strings End---------##
@@ -90,7 +89,7 @@ key_salt = 'abcdefghijklmnop'
 file_path = '/home/therealOri/Projects/example.txt'
 enc_salt = 'qrstuvwxyz123456'
 
-oCrypt().file_encrypt(key, key_salt, file_path, enc_salt) #Will return "False" if errors happen. "True" if successful.
+oCrypt().file_encrypt(key, key_salt, file_path, enc_salt)
 
 
 
@@ -118,7 +117,7 @@ key_salt = 'abcdefghijklmnop'
 dir_path = '/home/therealOri/Projects #Must be a path to the directory you want to encrypt.
 enc_salt = 'qrstuvwxyz123456'
 
-oCrypt().dir_encrypt(key, key_salt, dir_path, enc_salt) # Will return "False" if errors happen. "True" if successful.
+oCrypt().dir_encrypt(key, key_salt, dir_path, enc_salt)
 
 
 
@@ -137,4 +136,7 @@ oCrypt().dir_decrypt(key2, sdir_salt2, dir_path2, sdir_salt2)
 
 __ __
 
-My own sample file for this project: [crypt_sample.py](https://haste.powercord.dev/imemimejar.py) 
+<br />
+
+# Support
+> To be added... <3
