@@ -115,7 +115,7 @@ oCrypt().file_decrypt(key, key_salt, file_path, enc_salt)
 #Encrypting Directory
 key = 'therealOri'
 key_salt = 'abcdefghijklmnop'
-dir_path = '/home/therealOri/Projects #Must be a path to the directory you want to encrypt.
+dir_path = '/home/therealOri/Projects' #Must be a path to the directory you want to encrypt.
 enc_salt = 'qrstuvwxyz123456'
 
 oCrypt().dir_encrypt(key, key_salt, dir_path, enc_salt)
@@ -125,7 +125,7 @@ oCrypt().dir_encrypt(key, key_salt, dir_path, enc_salt)
 #Decrypting Directory
 key = 'therealOri'
 key_salt = 'abcdefghijklmnop'
-dir_path = '/home/therealOri/Projects
+dir_path = '/home/therealOri/Projects'
 enc_salt = 'qrstuvwxyz123456'
 
 oCrypt().dir_decrypt(key2, sdir_salt2, dir_path2, sdir_salt2)
