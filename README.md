@@ -41,7 +41,8 @@ __ __
 # Code Examples
 > If you would like to make this look better/more presentable. Please by all means make a pull request xD. I'm not the best with making things look great.
 
-It is important to know that all functions will take 4 values. 2 for the making of the hashed value and 2 for the making of the encryption key.
+It is important to know that all functions will take 4 values. 2 for the making of the hashed value, 1 for the making of the encryption key, and 1 for what you want encrypted/decrypted.
+
 Blake2b salted hashing requires 1 value to be hashed and 1 value to be used to salt the hash. This then gets plugged into the AES encryption as a key and then we salt that aswell. All of that will be used to encrypt whatever you want as a value. "strings", "files", or "directories/folders".
 
 You can read more about what the arguments do in the linked documentation.
