@@ -50,14 +50,14 @@ class oCrypt:
 
 
     def file_encrypt(self, key, key_salt, file, enc_salt):
-        BUF_SIZE = 65536
         hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=16, salt=bytes(key_salt, 'utf-8')).digest()
         isFile = os.path.isfile(file)
         if isFile == True:
             key = PBKDF2(hash_key, enc_salt, dkLen=32)
             rb = get_random_bytes(AES.block_size)
             cipher = AES.new(key, AES.MODE_CBC, rb)
-            
+
+            BUF_SIZE = 65536
             with open(file, 'rb') as f:
                 while True:
                     data = f.read(BUF_SIZE)
@@ -75,7 +75,7 @@ class oCrypt:
             except Exception:
                 flee_e2 = "Could not open, write into, or replace/rename the file.  |  File may have no data to encrypt."
                 raise Exception(flee_e2) from None
-            
+
         else:
             m = 'File not found...The provided file is either a directory/folder, spelled incorrectly, or does not exist where specified.'
             raise Exception(m)
@@ -114,8 +114,6 @@ class oCrypt:
                     except Exception:
                         fled_e4 = "Could not open, write into, or replace/rename the file.."
                         raise Exception(fled_e4) from None
-            else:
-                pass
         else:
             m = 'File not found...The provided file is either a directory/folder, spelled incorrectly, or does not exist where specified.'
             raise Exception(m)
@@ -139,7 +137,6 @@ class oCrypt:
 
     # FOR dir_encrypt() ONLY!
     def fdir_enc(self, key, key_salt, file, enc_salt):
-        BUF_SIZE = 65536
         hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=16, salt=bytes(key_salt, 'utf-8')).digest()
         isFile = os.path.isfile(file)
         if isFile == True:
@@ -147,19 +144,16 @@ class oCrypt:
             rb = get_random_bytes(AES.block_size)
             cipher = AES.new(key, AES.MODE_CBC, rb)
 
+            BUF_SIZE = 65536
             with open(file, 'rb') as f:
                 while True:
                     data = f.read(BUF_SIZE)
-                    if not data:
-                        break
-                    elif data == '':
-                        break
-                    else:
+                    if data and data != '':
                         cipher_data = base64.b64encode(rb + cipher.encrypt(pad(data, AES.block_size)))
                         with open(file, 'wb') as f2:
                             f2.write(cipher_data)
                             os.rename(file, f'{file}.oCrypted')
-                        break
+                    break
         else:
             m = 'File not found...The provided file is either a directory/folder, spelled incorrectly, or does not exist where specified.'
             raise Exception(m)
@@ -173,13 +167,7 @@ class oCrypt:
             if file.endswith('.oCrypted'):
                 with open(file, 'rb') as f:
                     string = f.read()
-                    if not string:
-                        pass
-                    elif string == b'':
-                        pass
-                    elif string == '':
-                        pass
-                    else:
+                    if string and string != b'' and string != '':
                         b64d = base64.b64decode(string)
                         key = PBKDF2(hash_key, enc_salt, dkLen=32)
                         cipher = AES.new(key, AES.MODE_CBC, b64d[:AES.block_size])
@@ -189,8 +177,6 @@ class oCrypt:
                             f2.write(d_cipher_data)
                             os.rename(file, file.replace('.oCrypted', ''))
 
-            else:
-                pass
         else:
             flD_m = 'File not found...The provided file is either a directory/folder, spelled incorrectly, or does not exist where specified.'
             raise Exception(flD_m)
