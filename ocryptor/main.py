@@ -24,7 +24,7 @@ class oCrypt:
 
 
     def string_encrypt(self, key, key_salt, string, enc_salt):
-        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=16, salt=bytes(key_salt, 'utf-8')).digest()
+        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=64, salt=bytes(key_salt, 'utf-8')).digest()
 
         key = PBKDF2(hash_key, enc_salt, dkLen=32)
         rb = get_random_bytes(AES.block_size)
@@ -34,7 +34,7 @@ class oCrypt:
 
 
     def string_decrypt(self, key, key_salt, string, enc_salt):
-        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=16, salt=bytes(key_salt, 'utf-8')).digest()
+        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=64, salt=bytes(key_salt, 'utf-8')).digest()
         b64d = base64.b64decode(string)
 
         try:
@@ -51,7 +51,7 @@ class oCrypt:
 
     def file_encrypt(self, key, key_salt, file, enc_salt):
         BUF_SIZE = 65536
-        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=16, salt=bytes(key_salt, 'utf-8')).digest()
+        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=64, salt=bytes(key_salt, 'utf-8')).digest()
         isFile = os.path.isfile(file)
         if isFile == True:
             key = PBKDF2(hash_key, enc_salt, dkLen=32)
@@ -83,7 +83,7 @@ class oCrypt:
 
     
     def file_decrypt(self, key, key_salt, file, enc_salt):
-        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=16, salt=bytes(key_salt, 'utf-8')).digest()
+        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=64, salt=bytes(key_salt, 'utf-8')).digest()
         isFile = os.path.isfile(file)
         if isFile == True:
             if file.endswith('.oCrypted'):
@@ -140,7 +140,7 @@ class oCrypt:
     # FOR dir_encrypt() ONLY!
     def fdir_enc(self, key, key_salt, file, enc_salt):
         BUF_SIZE = 65536
-        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=16, salt=bytes(key_salt, 'utf-8')).digest()
+        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=64, salt=bytes(key_salt, 'utf-8')).digest()
         isFile = os.path.isfile(file)
         if isFile == True:
             key = PBKDF2(hash_key, enc_salt, dkLen=32)
@@ -167,7 +167,7 @@ class oCrypt:
 
     # FOR dir_decrypt() ONLY!
     def fdir_dcr(self, key, key_salt, file, enc_salt):
-        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=16, salt=bytes(key_salt, 'utf-8')).digest()
+        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=64, salt=bytes(key_salt, 'utf-8')).digest()
         isFile = os.path.isfile(file)
         if isFile == True:
             if file.endswith('.oCrypted'):
@@ -198,7 +198,7 @@ class oCrypt:
 
 
     def dir_encrypt(self, key, key_salt, dir_path, enc_salt):
-        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=16, salt=bytes(key_salt, 'utf-8')).digest()
+        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=64, salt=bytes(key_salt, 'utf-8')).digest()
         isDirectory = os.path.isdir(dir_path)
         if isDirectory == True:
             for path, subdirs, files in os.walk(dir_path):
@@ -212,7 +212,7 @@ class oCrypt:
             raise Exception(dirm)
 
     def dir_decrypt(self, key, key_salt, dir_path, enc_salt):
-        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=16, salt=bytes(key_salt, 'utf-8')).digest()
+        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=64, salt=bytes(key_salt, 'utf-8')).digest()
         isDirectory = os.path.isdir(dir_path)
         if isDirectory == True:
             for path, subdirs, files in os.walk(dir_path):
