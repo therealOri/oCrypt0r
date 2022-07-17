@@ -59,17 +59,17 @@ enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
 enc_salt = 'qrstuvwxyz1234567890'
 
 str_enc = oCrypt().string_encrypt(string, enc_key, enc_salt)
-print(str_enc) # Output is b64 encoded.
+print(str_enc) # Output is b64 encoded. => VpqFynzUPOK3dHYaCFO57IGlYrQRyzt2NvmzMEN2+AA=
 
 
 
 #Decrypting Strings
-string = 'Hello Wolrd <3'
-enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
-enc_salt = 'qrstuvwxyz123456'
-
-str_dcr = oCrypt().string_decrypt(string, enc_key, enc_salt)
-print(str_dcr) # Output is "Hello Wolrd <3"
+11 string = 'VpqFynzUPOK3dHYaCFO57IGlYrQRyzt2NvmzMEN2+AA='
+12 enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
+13 enc_salt = 'qrstuvwxyz1234567890'
+14
+15 str_dcr = oCrypt().string_decrypt(string, enc_key, enc_salt)
+16 print(str_dcr) # Output is "Hello Wolrd <3"
 
 ##---------Strings End---------##
 
@@ -84,7 +84,7 @@ print(str_dcr) # Output is "Hello Wolrd <3"
 #Encrypting Files
 file_path = '/home/therealOri/Projects/example.txt'
 enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
-enc_salt = 'qrstuvwxyz123456'
+enc_salt = 'qrstuvwxyz1234567890'
 
 oCrypt().file_encrypt(file_path, enc_key, enc_salt)
 
@@ -93,7 +93,7 @@ oCrypt().file_encrypt(file_path, enc_key, enc_salt)
 #Decrypting Files
 file_path = '/home/therealOri/Projects/example.txt.oCrypted' # .oCrypted is what is used to let you know that the file is encrypted.
 enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
-enc_salt = 'qrstuvwxyz123456'
+enc_salt = 'qrstuvwxyz1234567890'
 
 oCrypt().file_decrypt(file_path, enc_key, enc_salt)
 
@@ -110,7 +110,7 @@ oCrypt().file_decrypt(file_path, enc_key, enc_salt)
 #Encrypting Directory
 dir_path = '/home/therealOri/Projects' #Must be a path to the directory you want to encrypt.
 enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
-enc_salt = 'qrstuvwxyz123456'
+enc_salt = 'qrstuvwxyz1234567890'
 
 oCrypt().dir_encrypt(dir_path, enc_key, enc_salt)
 
@@ -119,7 +119,7 @@ oCrypt().dir_encrypt(dir_path, enc_key, enc_salt)
 #Decrypting Directory
 dir_path = '/home/therealOri/Projects'
 enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
-enc_salt = 'qrstuvwxyz123456'
+enc_salt = 'qrstuvwxyz1234567890'
 
 oCrypt().dir_decrypt(dir_path, enc_key, enc_salt)
 
