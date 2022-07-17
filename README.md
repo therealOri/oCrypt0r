@@ -64,12 +64,12 @@ print(str_enc) # Output is b64 encoded. => VpqFynzUPOK3dHYaCFO57IGlYrQRyzt2NvmzM
 
 
 #Decrypting Strings
-11 string = 'VpqFynzUPOK3dHYaCFO57IGlYrQRyzt2NvmzMEN2+AA='
-12 enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
-13 enc_salt = 'qrstuvwxyz1234567890'
-14
-15 str_dcr = oCrypt().string_decrypt(string, enc_key, enc_salt)
-16 print(str_dcr) # Output is "Hello Wolrd <3"
+string = 'VpqFynzUPOK3dHYaCFO57IGlYrQRyzt2NvmzMEN2+AA='
+enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
+enc_salt = 'qrstuvwxyz1234567890'
+
+str_dcr = oCrypt().string_decrypt(string, enc_key, enc_salt)
+print(str_dcr) # Output is "Hello Wolrd <3"
 
 ##---------Strings End---------##
 
