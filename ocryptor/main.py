@@ -1,5 +1,4 @@
 import base64
-import hashlib
 import sys
 import time
 import os
@@ -23,38 +22,35 @@ class oCrypt:
         os.system('clear||cls')
 
 
-    def string_encrypt(self, key, key_salt, string, enc_salt):
-        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=64, salt=bytes(key_salt, 'utf-8')).digest()
+    def string_encrypt(self, string, enc_key, enc_salt):
 
-        key = PBKDF2(hash_key, enc_salt, dkLen=32)
+        key = PBKDF2(enc_key, enc_salt, dkLen=32)
         rb = get_random_bytes(AES.block_size)
         cipher = AES.new(key, AES.MODE_CBC, rb)
         cipher_data = base64.b64encode(rb + cipher.encrypt(pad(string.encode('utf-8'), AES.block_size)))
         return cipher_data.decode()
 
 
-    def string_decrypt(self, key, key_salt, string, enc_salt):
-        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=64, salt=bytes(key_salt, 'utf-8')).digest()
+    def string_decrypt(self, string, enc_key, enc_salt):
         b64d = base64.b64decode(string)
 
         try:
-            key = PBKDF2(hash_key, enc_salt, dkLen=32)
+            key = PBKDF2(enc_key, enc_salt, dkLen=32)
             cipher = AES.new(key, AES.MODE_CBC, b64d[:AES.block_size])
             d_cipher_data = unpad(cipher.decrypt(b64d[AES.block_size:]), AES.block_size)
         except Exception as e:
-            strd_e = f'The provided "enc_salt" or the "key_salt" does not match what was was used to encrypt the data...\nError: {e}'
+            strd_e = f'The provided "enc_salt" or the "enc_key" does not match what was was used to encrypt the data...\nError: {e}'
             raise Exception(strd_e) from None
         return d_cipher_data.decode()
 
 
 
 
-    def file_encrypt(self, key, key_salt, file, enc_salt):
+    def file_encrypt(self, file, enc_key, enc_salt):
         BUF_SIZE = 65536
-        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=64, salt=bytes(key_salt, 'utf-8')).digest()
         isFile = os.path.isfile(file)
         if isFile == True:
-            key = PBKDF2(hash_key, enc_salt, dkLen=32)
+            key = PBKDF2(enc_key, enc_salt, dkLen=32)
             rb = get_random_bytes(AES.block_size)
             cipher = AES.new(key, AES.MODE_CBC, rb)
             
@@ -82,8 +78,7 @@ class oCrypt:
             
 
     
-    def file_decrypt(self, key, key_salt, file, enc_salt):
-        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=64, salt=bytes(key_salt, 'utf-8')).digest()
+    def file_decrypt(self, file, enc_key, enc_salt):
         isFile = os.path.isfile(file)
         if isFile == True:
             if file.endswith('.oCrypted'):
@@ -101,11 +96,11 @@ class oCrypt:
                     else:
                         b64d = base64.b64decode(string)
                         try:
-                            key = PBKDF2(hash_key, enc_salt, dkLen=32)
+                            key = PBKDF2(enc_key, enc_salt, dkLen=32)
                             cipher = AES.new(key, AES.MODE_CBC, b64d[:AES.block_size])
                             d_cipher_data = unpad(cipher.decrypt(b64d[AES.block_size:]), AES.block_size)
                         except Exception as e:
-                            fled_e3 = f'The provided "enc_salt" or the "key_salt" does not match what was was used to encrypt the data...\nError: {e}'
+                            fled_e3 = f'The provided "enc_salt" or the "enc_key" does not match what was was used to encrypt the data...\nError: {e}'
                             raise Exception(fled_e3) from None
                     try:
                         with open(file, 'wb') as f2:
@@ -138,12 +133,11 @@ class oCrypt:
     # They do not have any errors that will raise, They do not return anything, They are not meant to be used for one file only. file_encrypt() is meant for that.
 
     # FOR dir_encrypt() ONLY!
-    def fdir_enc(self, key, key_salt, file, enc_salt):
+    def fdir_enc(self, file, enc_key, enc_salt):
         BUF_SIZE = 65536
-        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=64, salt=bytes(key_salt, 'utf-8')).digest()
         isFile = os.path.isfile(file)
         if isFile == True:
-            key = PBKDF2(hash_key, enc_salt, dkLen=32)
+            key = PBKDF2(enc_key, enc_salt, dkLen=32)
             rb = get_random_bytes(AES.block_size)
             cipher = AES.new(key, AES.MODE_CBC, rb)
 
@@ -166,8 +160,7 @@ class oCrypt:
 
 
     # FOR dir_decrypt() ONLY!
-    def fdir_dcr(self, key, key_salt, file, enc_salt):
-        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=64, salt=bytes(key_salt, 'utf-8')).digest()
+    def fdir_dcr(self, file, enc_key, enc_salt):
         isFile = os.path.isfile(file)
         if isFile == True:
             if file.endswith('.oCrypted'):
@@ -181,7 +174,7 @@ class oCrypt:
                         pass
                     else:
                         b64d = base64.b64decode(string)
-                        key = PBKDF2(hash_key, enc_salt, dkLen=32)
+                        key = PBKDF2(enc_key, enc_salt, dkLen=32)
                         cipher = AES.new(key, AES.MODE_CBC, b64d[:AES.block_size])
                         d_cipher_data = unpad(cipher.decrypt(b64d[AES.block_size:]), AES.block_size)
 
@@ -197,28 +190,26 @@ class oCrypt:
 
 
 
-    def dir_encrypt(self, key, key_salt, dir_path, enc_salt):
-        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=64, salt=bytes(key_salt, 'utf-8')).digest()
+    def dir_encrypt(self, dir_path, enc_key, enc_salt):
         isDirectory = os.path.isdir(dir_path)
         if isDirectory == True:
             for path, subdirs, files in os.walk(dir_path):
                 for name in files:
                     try:
-                        self.fdir_enc(key, key_salt, f'{path}/{name}', enc_salt)
+                        self.fdir_enc(f'{path}/{name}', enc_key, enc_salt)
                     except Exception as ee:
                         raise Exception(ee) from None
         else:
             dirm = 'Directory not found...The provided directory/folder is either a file, spelled incorrectly, or does not exist where specified.'
             raise Exception(dirm)
 
-    def dir_decrypt(self, key, key_salt, dir_path, enc_salt):
-        hash_key = hashlib.blake2b(bytes(key, 'utf-8'), digest_size=64, salt=bytes(key_salt, 'utf-8')).digest()
+    def dir_decrypt(self, dir_path, enc_key, enc_salt):
         isDirectory = os.path.isdir(dir_path)
         if isDirectory == True:
             for path, subdirs, files in os.walk(dir_path):
                 for name in files:
                     try:
-                        self.fdir_dcr(key, key_salt, f'{path}/{name}', enc_salt)
+                        self.fdir_dcr(f'{path}/{name}', enc_key, enc_salt)
                     except Exception as ed:
                         raise Exception(ed) from None
         else:
