@@ -12,11 +12,10 @@
 <br />
 
 # Updates
-What has been updated as of | 3/02/22:
+What has been updated as of | 7/17/22:
 
-> - dir_encrypt() & dir_decrypt() will now ignore files with no data.
-> - dir_decrypt() will ignore files without the extension `.oCrypted`.
-> - file_encrypt() & file_decrypt() will both now throw/raise proper errors if the file they are encrypting/decrypting has/contains no data.
+> - Encryption functions now take 3 args instead of 4.
+> - Removed the hashing feature that makes a blaske2b hash of a key to be used in the encryption. This basically made things less unique as the hash was just all 0-9 and lowercase a-z characters.
 
 <br />
 <br />
@@ -41,11 +40,11 @@ __ __
 # Code Examples
 > If you would like to make this look better/more presentable. Please by all means make a pull request xD. I'm not the best with making things look great.
 
-It is important to know that all functions will take 4 values. 2 for the making of the hashed value, 1 for the making of the encryption key, and 1 for what you want encrypted/decrypted.
+It is important to know that all functions will take 3 values. 2 for the making of the encryption key, and 1 for what you want encrypted/decrypted.
 
-Blake2b salted hashing requires 1 value to be hashed and 1 value to be used to salt the hash. This then gets plugged into the AES encryption as a key and then we salt that aswell. All of that will be used to encrypt whatever you want as a value. "strings", "files", or "directories/folders".
+The encryption takes 2 values to make a key. The key then gets plugged into the AES encryption as a cipher. All of that will be used to encrypt whatever you want as a value. "strings", "files", or "directories/folders". (inclusing sub-directories)
 
-You can read more about what the arguments do in the linked documentation.
+You can read more about what the arguments do in the documentation.
 
 - [Documentation](https://github.com/therealOri/oCrypt0r/blob/main/DOCUMENTATION.md)
 ```python
@@ -55,23 +54,21 @@ from ocryptor import oCrypt
 ##---------Strings---------##
 
 #Encrypting Strings
-key = 'therealOri'
-key_salt = 'abcdefghijklmnop' #MUST be 16 characters or less.
 string = 'Hello Wolrd <3'
+enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
 enc_salt = 'qrstuvwxyz1234567890'
 
-str_enc = oCrypt().string_encrypt(key, key_salt, string, enc_salt)
+str_enc = oCrypt().string_encrypt(string, enc_key, enc_salt)
 print(str_enc) # Output is b64 encoded.
 
 
 
 #Decrypting Strings
-key = 'therealOri'
-key_salt = 'abcdefghijklmnop'
 string = 'Hello Wolrd <3'
+enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
 enc_salt = 'qrstuvwxyz123456'
 
-str_dcr = oCrypt().string_decrypt(key, key_salt, string, enc_salt)
+str_dcr = oCrypt().string_decrypt(string, enc_key, enc_salt)
 print(str_dcr) # Output is "Hello Wolrd <3"
 
 ##---------Strings End---------##
@@ -85,22 +82,20 @@ print(str_dcr) # Output is "Hello Wolrd <3"
 ##---------Files---------##
 
 #Encrypting Files
-key = 'therealOri'
-key_salt = 'abcdefghijklmnop'
 file_path = '/home/therealOri/Projects/example.txt'
+enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
 enc_salt = 'qrstuvwxyz123456'
 
-oCrypt().file_encrypt(key, key_salt, file_path, enc_salt)
+oCrypt().file_encrypt(file_path, enc_key, enc_salt)
 
 
 
 #Decrypting Files
-key = 'therealOri'
-key_salt = 'abcdefghijklmnop'
 file_path = '/home/therealOri/Projects/example.txt.oCrypted' # .oCrypted is what is used to let you know that the file is encrypted.
+enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
 enc_salt = 'qrstuvwxyz123456'
 
-oCrypt().file_decrypt(key, key_salt, file_path, enc_salt)
+oCrypt().file_decrypt(file_path, enc_key, enc_salt)
 
 ##---------Files End---------##
 
@@ -113,22 +108,20 @@ oCrypt().file_decrypt(key, key_salt, file_path, enc_salt)
 ##---------Directories---------##
 
 #Encrypting Directory
-key = 'therealOri'
-key_salt = 'abcdefghijklmnop'
 dir_path = '/home/therealOri/Projects' #Must be a path to the directory you want to encrypt.
+enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
 enc_salt = 'qrstuvwxyz123456'
 
-oCrypt().dir_encrypt(key, key_salt, dir_path, enc_salt)
+oCrypt().dir_encrypt(dir_path, enc_key, enc_salt)
 
 
 
 #Decrypting Directory
-key = 'therealOri'
-key_salt = 'abcdefghijklmnop'
 dir_path = '/home/therealOri/Projects'
+enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
 enc_salt = 'qrstuvwxyz123456'
 
-oCrypt().dir_decrypt(key2, sdir_salt2, dir_path2, sdir_salt2)
+oCrypt().dir_decrypt(dir_path, enc_key, enc_salt)
 
 ##---------Directories End---------##
 ```
