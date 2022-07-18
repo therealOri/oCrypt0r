@@ -15,7 +15,7 @@
 What has been updated as of | 7/17/22:
 
 > - Encryption functions now take 3 args instead of 4.
-> - Removed the hashing feature that makes a blaske2b hash of a key to be used in the encryption. This basically made things less unique as the hash was just all 0-9 and lowercase a-z characters.
+> - Removed the hashing feature that makes a blake2b hash of a key to be used in the encryption. This basically made things less unique as the hash was just all 0-9 and lowercase a-z characters.
 
 <br />
 <br />
