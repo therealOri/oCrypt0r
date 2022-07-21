@@ -10,7 +10,7 @@ setuptools.setup(
     author="therealOri",
     license="GPL-3.0",
     install_requires=[
-        "pycryptodome==3.14.1",
+        "pycryptodome==3.15.0",
     ],
     author_email="therealOri@duck.com",
     description="A minimalistic, simple AES encryption library written in python3.",
