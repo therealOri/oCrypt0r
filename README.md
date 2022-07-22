@@ -134,7 +134,7 @@ __ __
 
 # Disclaimer
 I am not liable or responsible for any data loss or destruction of any kind of data perpetrated by bad actors using my code/package/functions. This also extends to losing your own data while using oCrypt0r. If you lose data and do not have backups then that is solely on you and I am not liable or responible for any loss of data you may have occured.
-> This disclaimer mainly comes from me noticing that not all files can be encrypted and decrypted without corruption, I haven't found a way to do that safely yet. So remember to be carefule of what you encrypt and make sure to have plenty of backups.
+> This disclaimer mainly comes from me noticing that not all files can be encrypted and decrypted without corruption, like video files like .mkv or zip files and archives for example. I haven't really found a way to do that safely yet. So remember to be careful of what you encrypt and make sure to have plenty of backups.
 __ __
 
 
