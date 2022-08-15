@@ -55,7 +55,8 @@ file_decrypt(file_path, enc_key, enc_salt)
 __ __
 
 **Arguments:**
-- `file_path` = The path to the file you want encrypted. Example: `/home/therealOri/Projects/example.txt`
+- `file_path` = The path to the file you want encrypted. 
+> Example: `/home/therealOri/Projects/example.txt` for encrypting and `example.txt.oCrypted` for decrypting.
 - `enc_key` = The key used to encrypt the string.
 - `enc_salt` = A salt that will be used with the key for the encryption.
 __ __
