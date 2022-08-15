@@ -93,6 +93,17 @@ __ __
 <br />
 <br />
 
+# Clearing Terminal & Windows
+```python
+clear()
+```
+`clear()` is the function used to clear your terminal or window.. It takes NO arguments.
+> - If you ever need to clear your terminal or window, you can use this instead of making your own way.
+__ __
+
+<br />
+<br />
+
 # About | FAQs
 > - [Q1] What is the purpose of this package/library.
 > 
