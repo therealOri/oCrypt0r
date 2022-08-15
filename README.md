@@ -49,6 +49,7 @@ You can read more about what the arguments do in the documentation.
 - [Documentation](https://github.com/therealOri/oCrypt0r/blob/main/DOCUMENTATION.md)
 ```python
 from ocryptor import oCrypt
+oCr = oCrypt()
 
 
 ##---------Strings---------##
@@ -58,7 +59,8 @@ string = 'Hello Wolrd <3'
 enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
 enc_salt = 'qrstuvwxyz1234567890'
 
-str_enc = oCrypt().string_encrypt(string, enc_key, enc_salt)
+str_enc = oCr.string_encrypt(string, enc_key, enc_salt)
+oCr.clear()
 print(str_enc) # Output is b64 encoded. => VpqFynzUPOK3dHYaCFO57IGlYrQRyzt2NvmzMEN2+AA=
 
 
@@ -68,7 +70,8 @@ string = 'VpqFynzUPOK3dHYaCFO57IGlYrQRyzt2NvmzMEN2+AA='
 enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
 enc_salt = 'qrstuvwxyz1234567890'
 
-str_dcr = oCrypt().string_decrypt(string, enc_key, enc_salt)
+str_dcr = oCr.string_decrypt(string, enc_key, enc_salt)
+oCr.clear()
 print(str_dcr) # Output is "Hello Wolrd <3"
 
 ##---------Strings End---------##
@@ -86,7 +89,7 @@ file_path = '/home/therealOri/Projects/example.txt'
 enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
 enc_salt = 'qrstuvwxyz1234567890'
 
-oCrypt().file_encrypt(file_path, enc_key, enc_salt)
+oCr.file_encrypt(file_path, enc_key, enc_salt)
 
 
 
@@ -95,7 +98,7 @@ file_path = '/home/therealOri/Projects/example.txt.oCrypted' # .oCrypted is what
 enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
 enc_salt = 'qrstuvwxyz1234567890'
 
-oCrypt().file_decrypt(file_path, enc_key, enc_salt)
+oCr.file_decrypt(file_path, enc_key, enc_salt)
 
 ##---------Files End---------##
 
@@ -112,7 +115,7 @@ dir_path = '/home/therealOri/Projects' #Must be a path to the directory you want
 enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
 enc_salt = 'qrstuvwxyz1234567890'
 
-oCrypt().dir_encrypt(dir_path, enc_key, enc_salt)
+oCr.dir_encrypt(dir_path, enc_key, enc_salt)
 
 
 
@@ -121,7 +124,7 @@ dir_path = '/home/therealOri/Projects'
 enc_key = "abcdefgHIJKLMNOP~!@#$%^&*"
 enc_salt = 'qrstuvwxyz1234567890'
 
-oCrypt().dir_decrypt(dir_path, enc_key, enc_salt)
+oCr.dir_decrypt(dir_path, enc_key, enc_salt)
 
 ##---------Directories End---------##
 ```
